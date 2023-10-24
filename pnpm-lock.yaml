@@ -4,10 +4,12 @@ specifiers:
   '@sveltejs/vite-plugin-svelte': ^2.4.2
   picnic: ^7.1.0
   svelte: ^4.0.5
+  svelte-infinite-scroll: ^2.0.1
   vite: ^4.4.5
 
 dependencies:
   picnic: 7.1.0
+  svelte-infinite-scroll: 2.0.1
 
 devDependencies:
   '@sveltejs/vite-plugin-svelte': 2.4.6_svelte@4.2.2+vite@4.5.0
@@ -477,6 +479,10 @@ packages:
     dependencies:
       svelte: 4.2.2
     dev: true
+
+  /svelte-infinite-scroll/2.0.1:
+    resolution: {integrity: sha512-goTHCfOHRDCs8C5MeSuIc6LlAQ8zVQ+M4Y3LyvrDjx5rqSSxSrdCuQwIyWYNcO6j6/mnqRro3QB64ClBzfn+Wg==}
+    dev: false
 
   /svelte/4.2.2:
     resolution: {integrity: sha512-My2tytF2e2NnHSpn2M7/3VdXT4JdTglYVUuSuK/mXL2XtulPYbeBfl8Dm1QiaKRn0zoULRnL+EtfZHHP0k4H3A==}

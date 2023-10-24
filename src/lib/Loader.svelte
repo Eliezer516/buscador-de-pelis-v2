@@ -1,12 +1,21 @@
 <script>
 </script>
 
-<div class="loading-bar center"></div>
+<div class="loader-container">
+  <div class="loading-bar"></div>
+</div>
 
 
 <style>
-  .center {
-    margin: 0 auto;
+  .loader-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    place-items: center;
   }
 
   .loading-bar,
@@ -14,7 +23,7 @@
   .loading-bar:after {
       width: 1rem;
       height: 3rem;
-      background-color: black;
+      background-color: #0074d9;
       animation: animateBar 1s ease-in-out infinite;
   }
   .loading-bar {

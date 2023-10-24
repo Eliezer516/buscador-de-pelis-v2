@@ -14,7 +14,7 @@
     top: 0;
     left: 0;
     background: rgba(0,0,0,0.2);
-    display: flex;
+    display: grid;
     place-items: center;
   }
 

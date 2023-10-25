@@ -1,7 +1,7 @@
 <script>
   import { Router, Link, Route } from "svelte-routing"
-  import Home from './lib/Home.svelte'
-  import Movie from './lib/Movie.svelte'
+  import Home from './components/Home.svelte'
+  import Movie from './components/Movie.svelte'
 
   export let url = "";
   let basepath = "/buscador-de-pelis-v2"

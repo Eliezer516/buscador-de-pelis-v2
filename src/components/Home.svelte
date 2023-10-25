@@ -3,31 +3,44 @@
   import { Router, Link, Route } from "svelte-routing"
   import 'picnic/picnic.min.css'
   import Loader from './Loader.svelte'
-  import {movieData} from '../store/store.js'
+  import { movieData } from '../store/store.js'
 
   let data = []
   let loader = false
   let movieToSearch = ""
+  let tempSearch = ""
   let page = 1
   
   async function searchMovie() {
+    page = 1
     try {
       loader = true
       const response = await fetch(`https://www.omdbapi.com/?s=${movieToSearch}&page=${page}&apikey=422350ff`)
       const json = await response.json()
       const result = json.Search
-      data = [...data, ...result]
-      console.log(data)
+      movieData.update((n) => ([...result]))
       loader = false
+      tempSearch = movieToSearch
     } catch (err) {
       console.log(err)
       loader = false
     }
   }
 
-  function moreMovies() {
+  async function moreMovies() {
     page++
-    searchMovie()
+    try {
+      loader = true
+      const response = await fetch(`https://www.omdbapi.com/?s=${movieToSearch}&page=${page}&apikey=422350ff`)
+      const json = await response.json()
+      const result = json.Search
+      movieData.update((n) => ([...n, ...result]))
+      loader = false
+      tempSearch = movieToSearch
+    } catch (err) {
+      console.log(err)
+      loader = false
+    }
   }
 </script>
 
@@ -41,11 +54,16 @@
   </div>
   <br/>
   <br/>
-  {#if data.length > 0}
+  {#if $movieData.length > 0}
     <div class="poster-container flex center two-600 three-700 four-800">
-      {#each data as movie}
+      {#each $movieData as movie}
         <Link to="{movie.imdbID}">
-          <img src={movie.Poster === 'N/A' ? '/notfound.png' : movie.Poster } alt={movie.Title}>
+          <article class="card">
+            <img src={movie.Poster === 'N/A' ? '/notfound.png' : movie.Poster } alt={movie.Title}>
+            <footer>
+              <p>{movie.Title}</p>
+            </footer>
+          </article>
         </Link>
       {/each}
       <InfiniteScroll threshold={100} window={true} on:loadMore={() => moreMovies()}/>
